@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators'
 @Injectable({
   providedIn: 'root'
 })
-export class UsusuarioService {
+export class UsuarioService {
 
   private URL = 'https://reqres.in/api';
 
@@ -14,8 +14,14 @@ export class UsusuarioService {
   }
 
   getUsers() {
-    return this.http.get(`${this.URL}/users?per_page=6`).pipe(
+    return this.http.get(`${this.URL}/users?per_page=6&delay=3`).pipe(
       map(resp => resp['data']));
   }
+
+  getUserById(id: string) {
+    return this.http.get(`${this.URL}/users/${id}?delay=3`).pipe(
+      map(resp => resp['data']));
+  }
+
 
 }
